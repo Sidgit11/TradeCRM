@@ -14,7 +14,7 @@ export default function DashboardPage() {
       <FullWidthLayout>
         <div className="py-12 flex flex-col items-center text-center">
           <h2 className="text-2xl font-bold font-[family-name:var(--font-heading)] text-text-primary mb-2">
-            Welcome to Tradyon Outreach
+            Welcome to TradeCRM
           </h2>
           <p className="text-sm text-text-secondary max-w-md mb-8">
             Your command center for outreach campaigns, buyer discovery, and deal tracking.

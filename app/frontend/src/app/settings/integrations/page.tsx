@@ -276,7 +276,7 @@ function IntegrationsContent() {
                 <p className="text-sm font-medium text-text-primary mb-1">No email accounts connected</p>
                 <p className="text-xs text-text-secondary max-w-sm mb-4">
                   Connect your Gmail account to automatically read inbound emails, identify leads,
-                  and manage conversations from within Tradyon.
+                  and manage conversations from within TradeCRM.
                 </p>
                 <Button onClick={handleConnectGmail} isLoading={connecting}>
                   <GoogleLogo className="h-4 w-4 mr-1" weight="bold" /> Connect Gmail Account
@@ -432,7 +432,7 @@ function IntegrationsContent() {
         >
           <div className="space-y-4 py-2">
             <p className="text-sm text-text-secondary">
-              When you connect Gmail, Tradyon requests the following permissions:
+              When you connect Gmail, TradeCRM requests the following permissions:
             </p>
             {GMAIL_PERMISSIONS.map((perm) => (
               <div key={perm.label} className="flex items-start gap-3">

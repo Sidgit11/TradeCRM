@@ -6,7 +6,7 @@ export default function SignupPage() {
       <div className="flex flex-col items-center">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold font-[family-name:var(--font-heading)] text-primary mb-1">
-            Tradyon Outreach
+            TradeCRM
           </h1>
           <p className="text-sm text-text-secondary">Create your account</p>
         </div>

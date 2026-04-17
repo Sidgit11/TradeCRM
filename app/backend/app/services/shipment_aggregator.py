@@ -181,7 +181,7 @@ async def compute_summary(
 
     summary.last_refreshed_at = datetime.now(timezone.utc)
     summary.data_through_date = shipments[0].shipment_date if shipments else today
-    summary.source_providers = ["tradyon_internal"]
+    summary.source_providers = ["tradecrm_internal"]
     summary.total_shipments = total_shipments
     summary.total_volume_mt = total_vol
     summary.total_value_usd = total_val

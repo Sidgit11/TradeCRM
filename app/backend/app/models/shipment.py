@@ -28,7 +28,7 @@ class Shipment(Base):
         UUID(as_uuid=True), ForeignKey("companies.id", ondelete="CASCADE"), nullable=False,
     )
     source_id: Mapped[str] = mapped_column(String(255), nullable=False)
-    source_provider: Mapped[str] = mapped_column(String(50), default="tradyon_internal")
+    source_provider: Mapped[str] = mapped_column(String(50), default="tradecrm_internal")
 
     shipment_date: Mapped[date] = mapped_column(Date, nullable=False)
     direction: Mapped[ShipmentDirection] = mapped_column(

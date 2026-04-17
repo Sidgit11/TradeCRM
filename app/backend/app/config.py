@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Database (Neon)
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/tradyon_outreach"
+    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/tradecrm"
 
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"

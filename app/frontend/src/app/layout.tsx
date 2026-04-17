@@ -16,7 +16,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Tradyon Outreach",
+  title: "TradeCRM",
   description: "AI-powered multi-channel outreach for commodity traders",
 };
 

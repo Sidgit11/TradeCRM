@@ -9,7 +9,7 @@ from app.logging_config import get_logger, setup_logging
 class TestLoggingConfig:
     def test_get_logger_returns_named_logger(self):
         logger = get_logger("test.module")
-        assert logger.name == "tradyon.test.module"
+        assert logger.name == "tradecrm.test.module"
 
     def test_get_logger_returns_logger_instance(self):
         logger = get_logger("foo")

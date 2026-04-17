@@ -40,14 +40,14 @@ logger = get_logger("main")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     setup_logging()
-    logger.info("Tradyon Outreach API starting up")
+    logger.info("TradeCRM API starting up")
     logger.info("CORS allowed origin: %s", settings.FRONTEND_URL)
     yield
-    logger.info("Tradyon Outreach API shutting down")
+    logger.info("TradeCRM API shutting down")
 
 
 app = FastAPI(
-    title="Tradyon Outreach API",
+    title="TradeCRM API",
     description="AI-powered multi-channel outreach platform for commodity traders",
     version="0.1.0",
     lifespan=lifespan,

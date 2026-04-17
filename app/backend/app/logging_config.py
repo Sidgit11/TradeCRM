@@ -26,4 +26,4 @@ def setup_logging(log_level: str = "INFO") -> None:
 
 def get_logger(name: str) -> logging.Logger:
     """Get a named logger for a module."""
-    return logging.getLogger(f"tradyon.{name}")
+    return logging.getLogger(f"tradecrm.{name}")

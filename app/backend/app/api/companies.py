@@ -2,7 +2,7 @@ from typing import Optional
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import asc, desc, func, or_, select
+from sqlalchemy import String, asc, desc, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
@@ -100,6 +100,9 @@ async def list_companies(
 
     if country:
         query = query.where(Company.country.ilike(f"%{country}%"))
+
+    if commodity:
+        query = query.where(Company.commodities.cast(String).ilike(f"%{commodity}%"))
 
     if enrichment_status:
         query = query.where(Company.enrichment_status == enrichment_status)

@@ -1,7 +1,7 @@
-"""Tradyon Shipment Integration Client — extensible interface for shipment data.
+"""TradeCRM Shipment Integration Client — extensible interface for shipment data.
 
 V1: Returns data from local DB (seeded mock data).
-Future: Swap implementation to call real Tradyon internal shipment API
+Future: Swap implementation to call real shipment API
 without changing any callers.
 """
 from datetime import date
@@ -9,18 +9,18 @@ from typing import Dict, List, Optional
 
 from app.logging_config import get_logger
 
-logger = get_logger("integrations.tradyon_shipments")
+logger = get_logger("integrations.shipments")
 
 
-class TradyonShipmentClient:
-    """Client for fetching shipment data from Tradyon's trade intelligence platform.
+class ShipmentClient:
+    """Client for fetching shipment data from the trade intelligence platform.
 
     V1 implementation uses local DB as source.
     To integrate with real API, replace the fetch_* methods.
     """
 
     def __init__(self, api_url: Optional[str] = None, api_key: Optional[str] = None):
-        self.api_url = api_url or "https://api.tradyon.com/v1/shipments"
+        self.api_url = api_url or "https://api.tradecrm.example/v1/shipments"
         self.api_key = api_key
         self._initialized = True
 
@@ -36,7 +36,7 @@ class TradyonShipmentClient:
 
         V1: This is a stub — real data comes from the local DB via the
         shipment aggregator service. This client exists as the integration
-        point for when the real Tradyon API is available.
+        point for when the real shipment API is available.
 
         Returns:
             List of shipment dicts with keys:
@@ -66,4 +66,4 @@ class TradyonShipmentClient:
 
 
 # Singleton instance
-shipment_client = TradyonShipmentClient()
+shipment_client = ShipmentClient()

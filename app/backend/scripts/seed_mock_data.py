@@ -170,7 +170,7 @@ async def seed():
             # Get or create a placeholder email account for leads
             email_acct = (await db.execute(select(EmailAccount).where(EmailAccount.tenant_id == tenant_id).limit(1))).scalar_one_or_none()
             if not email_acct:
-                email_acct = EmailAccount(tenant_id=tenant_id, email_address="mock@tradyon.com", provider="gmail")
+                email_acct = EmailAccount(tenant_id=tenant_id, email_address="mock@tradecrm.example", provider="gmail")
                 db.add(email_acct)
                 await db.flush()
                 await db.refresh(email_acct)
@@ -251,7 +251,7 @@ async def seed():
                     shipments.append(Shipment(
                         tenant_id=tenant_id, company_id=c1.id,
                         source_id=f"TG-ALNOOR-{i+1:04d}",
-                        source_provider="tradyon_internal",
+                        source_provider="tradecrm_internal",
                         shipment_date=ship_date,
                         direction=ShipmentDirection.import_,
                         commodity_text="Black Pepper ASTA 550GL",
@@ -275,7 +275,7 @@ async def seed():
                     shipments.append(Shipment(
                         tenant_id=tenant_id, company_id=c2.id,
                         source_id=f"TG-HAMBURG-BP-{i+1:04d}",
-                        source_provider="tradyon_internal",
+                        source_provider="tradecrm_internal",
                         shipment_date=ship_date,
                         direction=ShipmentDirection.import_,
                         commodity_text="Black Pepper Malabar Garbled",
@@ -296,7 +296,7 @@ async def seed():
                     shipments.append(Shipment(
                         tenant_id=tenant_id, company_id=c2.id,
                         source_id=f"TG-HAMBURG-BP2-{i+1:04d}",
-                        source_provider="tradyon_internal",
+                        source_provider="tradecrm_internal",
                         shipment_date=ship_date,
                         direction=ShipmentDirection.import_,
                         commodity_text="Black Pepper Tellicherry TGSEB",
@@ -320,7 +320,7 @@ async def seed():
                     shipments.append(Shipment(
                         tenant_id=tenant_id, company_id=c3.id,
                         source_id=f"TG-SAVORY-TM-{i+1:04d}",
-                        source_provider="tradyon_internal",
+                        source_provider="tradecrm_internal",
                         shipment_date=ship_date,
                         direction=ShipmentDirection.import_,
                         commodity_text="Black Pepper Whole",

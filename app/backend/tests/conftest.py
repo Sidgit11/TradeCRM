@@ -1,4 +1,4 @@
-"""Shared test fixtures for the Tradyon Outreach backend test suite."""
+"""Shared test fixtures for the TradeCRM backend test suite."""
 import uuid
 from datetime import datetime, timezone
 

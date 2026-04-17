@@ -17,7 +17,7 @@ export default function PendingApprovalPage() {
             Access Pending
           </h1>
           <p className="text-sm text-text-secondary mb-6 leading-relaxed">
-            Your account has been created but is awaiting approval from the Tradyon team.
+            Your account has been created but is awaiting approval from the admin team.
           </p>
           <Button variant="secondary" onClick={() => window.location.href = "/login"} className="w-full">
             Sign Out

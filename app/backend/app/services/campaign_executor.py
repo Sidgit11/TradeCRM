@@ -102,6 +102,23 @@ async def execute_campaign(
 
     tenant = (await db.execute(select(Tenant).where(Tenant.id == tenant_id))).scalar_one()
 
+    # Check message plan limits
+    from app.api.billing import PLAN_LIMITS
+    plan = tenant.plan.value
+    plan_limits = PLAN_LIMITS.get(plan, PLAN_LIMITS["free_trial"])
+    msg_limit = plan_limits["messages"]
+    if msg_limit > 0:
+        from sqlalchemy import func as sql_func
+        month_start = datetime.now(timezone.utc).replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        messages_used = (await db.execute(
+            select(sql_func.count()).where(
+                Message.tenant_id == tenant_id,
+                Message.created_at >= month_start,
+            )
+        )).scalar() or 0
+        if messages_used >= msg_limit:
+            return {"error": f"Monthly message limit reached ({messages_used}/{msg_limit}). Upgrade your plan."}
+
     if contact_ids:
         # Send to specific contacts only
         result = await db.execute(

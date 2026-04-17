@@ -7,7 +7,7 @@ from celery.signals import after_setup_logger
 from app.config import settings
 
 celery_app = Celery(
-    "tradyon_outreach",
+    "tradecrm",
     broker=settings.REDIS_URL,
     backend=settings.REDIS_URL,
 )

@@ -59,7 +59,7 @@ export function Sidebar() {
           </div>
           {!collapsed && (
             <span className="text-lg font-bold text-primary font-[family-name:var(--font-heading)]">
-              Tradyon
+              TradeCRM
             </span>
           )}
         </Link>

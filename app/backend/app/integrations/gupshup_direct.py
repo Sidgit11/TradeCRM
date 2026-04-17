@@ -1,6 +1,6 @@
 """Gupshup Direct API — sends messages using HSM and Two-way accounts.
 
-Uses the direct messaging API (not Partner API) for sending from Tradyon's own WABA number.
+Uses the direct messaging API (not Partner API) for sending from your own WABA number.
 HSM = Template messages (outside 24hr window)
 Two-way = Session messages (within 24hr window)
 """

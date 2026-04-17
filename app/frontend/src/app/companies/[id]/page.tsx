@@ -548,7 +548,7 @@ export default function CompanyDetailPage({ params }: { params: Promise<{ id: st
                   <div className="pt-2 border-t border-border">
                     <span className="text-xs text-text-secondary">Role: </span>
                     <Badge size="sm" variant="outline" className="capitalize">{shipmentSummary.role.replace("_", "-")}</Badge>
-                    <span className="text-[9px] text-text-tertiary ml-2">Powered by Tradyon shipment data</span>
+                    <span className="text-[9px] text-text-tertiary ml-2">Powered by TradeCRM shipment data</span>
                   </div>
                 )}
               </>

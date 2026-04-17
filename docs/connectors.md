@@ -101,7 +101,7 @@ GOOGLE_REDIRECT_URI=http://localhost:8000/email/callback/gmail
 **What it does**: Enables WhatsApp messaging via two modes:
 
 - **Partner API**: Multi-tenant mode where each customer gets their own WhatsApp Business Account (WABA) with their own phone number. Supports embedded signup.
-- **Direct API**: Single-WABA mode using Tradyon's own number. Simpler setup, suitable for smaller deployments.
+- **Direct API**: Single-WABA mode using your own number. Simpler setup, suitable for smaller deployments.
 
 **Implementation**: `app/integrations/gupshup.py` (Partner), `app/integrations/gupshup_direct.py` (Direct)
 
@@ -254,20 +254,20 @@ STRIPE_PRO_PRICE_ID=price_xxx
 
 ---
 
-## Tradyon Shipments API
+## Shipment Data API
 
-**What it does**: Provides trade shipment intelligence data (import/export records, volumes, pricing, trade partners). Currently uses local database data with a stub client designed to be swapped for a real API.
+**What it does**: Provides trade shipment intelligence data (import/export records, volumes, pricing, trade partners). Currently uses local database data with a stub client designed to be swapped for any shipment data provider (Panjiva, ImportGenius, Volza, etc.).
 
 **Implementation**: `app/integrations/tradyon_shipments.py`
 
 **Required env vars** (for future real API):
 ```
-TRADYON_SHIPMENTS_API_URL=https://api.tradyon.com/v1/shipments
-TRADYON_SHIPMENTS_API_KEY=xxx
+SHIPMENTS_API_URL=https://api.your-provider.com/v1/shipments
+SHIPMENTS_API_KEY=xxx
 ```
 
 **Setup**:
-The current implementation uses locally seeded shipment data. When a real shipment API is available, update the `TradyonShipmentClient` class methods without changing any calling code.
+The current implementation uses locally seeded shipment data. When a real shipment data API is available, update the `ShipmentClient` class methods without changing any calling code.
 
 **API endpoints powered**:
 - `GET /companies/{id}/shipments/summary` -- aggregated shipment analytics

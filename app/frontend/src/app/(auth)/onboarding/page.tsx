@@ -57,7 +57,7 @@ export default function OnboardingPage() {
         <div className="w-full max-w-[560px]">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold font-[family-name:var(--font-heading)] text-primary mb-1">
-              Welcome to Tradyon Outreach
+              Welcome to TradeCRM
             </h1>
             <p className="text-sm text-text-secondary">
               Let us set up your workspace in a few steps

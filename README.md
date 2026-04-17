@@ -1,10 +1,10 @@
 # TradeCRM
 
-**The open-source CRM for cross-border commodity traders.**
+**The CRM built for cross-border commodity traders.**
 
 TradeCRM is a full-stack CRM and sales intelligence platform purpose-built for commodity exporters and importers. It replaces the fragmented workflow of Excel buyer lists, WhatsApp conversations, shipment research tools, and email outreach spreadsheets with a single system that handles company profiling, contact discovery, multi-channel outreach, pipeline management, and trade analytics -- all powered by AI agents that automate the heavy lifting.
 
-Built with FastAPI, Next.js 16, and PostgreSQL. Designed for multi-tenant SaaS deployment.
+Built with FastAPI, Next.js 16, and PostgreSQL. Designed for multi-tenant SaaS deployment. Free to use, modify, and deploy under the Apache 2.0 license.
 
 ---
 
@@ -26,11 +26,11 @@ A four-step enrichment pipeline that transforms a company name into a full profi
 Outputs a confidence score (0.0-1.0) and auto-creates Contact records for discovered decision makers.
 
 ### Multi-Channel Outreach
-- **Email**: Gmail OAuth integration for reading, sending, replying, drafting, and label management. SendGrid for transactional delivery with warmup scheduling.
+- **Email**: Pluggable email provider system -- switch between SendGrid, Resend, Amazon SES, or any SMTP server by setting one env var. Gmail OAuth for inbox reading, sending, replying, drafting, and label management.
 - **WhatsApp**: GupShup integration supporting both Partner API (multi-tenant, per-customer WABA) and Direct API modes. Template messages, session messages within the 24-hour window, and inbound message handling via webhooks.
 
 ### Campaign Automation
-Multi-step campaign builder with email and WhatsApp channels. Steps support delay-based scheduling and conditional triggers (no reply, no open, always). Campaign lifecycle: draft, activate, pause, resume, cancel. Per-campaign analytics: delivery rate, open rate, reply rate, bounces, and failures.
+Campaign builder with email and WhatsApp channels. Campaign lifecycle: draft, activate, pause, resume, cancel. Per-campaign analytics: delivery rate, open rate, reply rate, bounces, and failures. The campaign model supports multi-step sequences with delay scheduling and conditional triggers (no reply, no open, always) -- step 1 execution is fully implemented; the multi-step scheduler is on the roadmap.
 
 ### Pipeline and Deals
 Kanban-style pipeline with seven default stages (New Lead through Closed Won/Lost). Opportunities track commodity, quantity, target/our/competitor pricing, incoterms, payment terms, container details, shipment dates, sample status, and probability. Auto-generated display IDs (e.g., TRAD-0001). Activity logging on stage changes.
@@ -243,7 +243,7 @@ tradecrm/
           sendgrid_service.py# SendGrid email delivery
           gupshup.py         # GupShup Partner API (multi-tenant)
           gupshup_direct.py  # GupShup Direct API
-          tradyon_shipments.py # Shipment data client
+          tradyon_shipments.py # Shipment data client (pluggable)
         middleware/          # Auth and tenant middleware
         models/             # SQLAlchemy models
         schemas/            # Pydantic request/response schemas
@@ -340,7 +340,7 @@ TradeCRM integrates with the following external services:
 | **Apollo** | Company metadata and contact/people discovery |
 | **Gemini** | Structured data extraction, reply drafting, template generation |
 | **Stripe** | Subscription billing (placeholder) |
-| **Tradyon Shipments** | Trade shipment intelligence data |
+| **Shipment Data API** | Trade shipment intelligence (pluggable -- Panjiva, ImportGenius, etc.) |
 
 See [docs/connectors.md](docs/connectors.md) for setup instructions.
 

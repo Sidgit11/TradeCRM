@@ -52,7 +52,7 @@ TEMPLATE_VARIABLES: Dict[str, Dict[str, str]] = {
     },
     "tenant_sender_name": {
         "source": "User.name",
-        "example": "Siddhant",
+        "example": "Alex",
         "fallback": "",
         "description": "Sender's name",
     },

@@ -219,7 +219,7 @@ async def get_current_user(
         logger.warning("Access denied — user not approved: user=%s email=%s", user.id, user.email)
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Your account is pending approval. Please contact the Tradyon team for access.",
+            detail="Your account is pending approval. Please contact the admin team for access.",
         )
 
     logger.debug("Authenticated user=%s tenant=%s", user.id, user.tenant_id)

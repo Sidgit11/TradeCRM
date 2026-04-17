@@ -19,7 +19,7 @@ class TestGupshupService:
     async def test_parse_inbound_message(self):
         service = GupshupPartnerService()
         event = await service.parse_webhook({
-            "app": "tradyon_test", "type": "message",
+            "app": "tradecrm_test", "type": "message",
             "payload": {"source": "919876543210", "type": "text",
                         "payload": {"text": "Hi, interested in pepper"}, "id": "msg_1"},
         })

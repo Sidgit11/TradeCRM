@@ -57,26 +57,26 @@ async def start_whatsapp_onboarding(
     if tenant.whatsapp_status == "active":
         return {"status": "already_connected", "phone": tenant.whatsapp_phone}
 
-    # Direct API mode — use Tradyon's own WABA number
+    # Direct API mode — use own WABA number
     if gupshup_direct.is_configured:
         tenant.whatsapp_phone = s.GUPSHUP_WABA_NUMBER
         tenant.whatsapp_status = "active"
         tenant.whatsapp_connected_at = datetime.now(timezone.utc)
-        tenant.gupshup_app_name = "tradyon_direct"
+        tenant.gupshup_app_name = "tradecrm_direct"
         await db.commit()
         logger.info("whatsapp: direct mode connected | tenant=%s phone=%s", str(tenant_id)[:8], s.GUPSHUP_WABA_NUMBER)
         return {
             "status": "active",
             "phone": s.GUPSHUP_WABA_NUMBER,
             "mode": "direct",
-            "message": "WhatsApp connected using Tradyon's WABA number.",
+            "message": "WhatsApp connected using your WABA number.",
         }
 
     # Partner API mode (multi-tenant)
     if gupshup_service.is_configured:
         try:
             if not tenant.gupshup_app_id:
-                app_name = f"tradyon_{str(tenant_id)[:8]}_{tenant.company_name[:20].replace(' ', '_').lower()}"
+                app_name = f"tradecrm_{str(tenant_id)[:8]}_{tenant.company_name[:20].replace(' ', '_').lower()}"
                 result = await gupshup_service.create_app(app_name)
                 tenant.gupshup_app_id = result["app_id"]
                 tenant.gupshup_app_name = app_name

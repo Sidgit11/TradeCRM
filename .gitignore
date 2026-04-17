@@ -1,0 +1,69 @@
+# ─── Environment & Secrets ────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ─── Internal docs (not for public repo) ─────────────────────────
+.internal/
+
+# ─── Python ───────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+*.db
+*.sqlite3
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# ─── Node / Frontend ─────────────────────────────────────────────
+node_modules/
+.next/
+out/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+coverage/
+*.tsbuildinfo
+
+# ─── IDEs & Editors ──────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ─── OS Files ─────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Claude / AI Context ─────────────────────────────────────────
+.claude/
+
+# ─── Enrichment data (contains real PII) ─────────────────────────
+enriched*.json
+enriched*.csv
+score-report*.json
+run-metrics.json
+companies*.csv
+
+# ─── Misc ─────────────────────────────────────────────────────────
+*.zip
+*.tar.gz
+*.log

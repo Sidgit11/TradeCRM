@@ -27,26 +27,39 @@ CLERK_JWT_ISSUER=https://your-app.clerk.accounts.dev
 
 ---
 
-## SendGrid (Email Delivery)
+## Email Providers (Pluggable)
 
-**What it does**: Sends transactional and campaign emails. Includes warmup scheduling logic for new sending domains.
+**What it does**: Sends campaign and transactional emails through your preferred provider. TradeCRM supports multiple email providers out of the box -- set one env var to switch.
 
-**Implementation**: `app/integrations/sendgrid_service.py`
+**Implementation**: `app/integrations/email_provider.py`
 
-**Required env vars**:
-```
-SENDGRID_API_KEY=SG.xxx
-```
+**Supported providers**:
 
-**Setup**:
-1. Create a SendGrid account at https://sendgrid.com
-2. Generate an API key with full access to Mail Send
-3. Verify your sending domain in SendGrid
-4. Configure the webhook endpoint for delivery events: `https://your-domain.com/webhooks/sendgrid`
+| Provider | `EMAIL_PROVIDER` | Required env var | Best for |
+|----------|-----------------|------------------|----------|
+| SendGrid | `sendgrid` | `SENDGRID_API_KEY` | High-volume transactional email |
+| Resend | `resend` | `RESEND_API_KEY` | Fast setup, modern API |
+| Amazon SES | `ses` | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` | Cost efficiency at scale |
+| Any SMTP | `smtp` | `SMTP_HOST`, `SMTP_USER`, `SMTP_PASSWORD` | Gmail, Outlook, Zoho, Mailgun, etc. |
+| Log (dev) | `log` | (none) | Local development -- prints to console |
+
+**Setup** (example with Resend -- takes under 2 minutes):
+1. Sign up at https://resend.com and get an API key
+2. Add to your `.env`:
+   ```
+   EMAIL_PROVIDER=resend
+   RESEND_API_KEY=re_xxx
+   ```
+3. Restart the backend. Campaign emails now send via Resend.
+
+**Adding a custom provider**:
+1. Create a class in `email_provider.py` that extends `EmailProvider`
+2. Implement `name`, `is_configured`, and `send()`
+3. Register it in `PROVIDER_REGISTRY` at the bottom of the file
 
 **API endpoints powered**:
 - Campaign email delivery (via campaign executor)
-- `POST /webhooks/sendgrid` -- delivery status updates (sent, delivered, opened, bounced)
+- `POST /webhooks/sendgrid` -- delivery status webhooks (SendGrid-specific)
 
 ---
 

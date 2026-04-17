@@ -16,6 +16,7 @@ from app.models.company import Company
 from app.models.tenant import Tenant
 from app.models.enums import ChannelType, MessageDirection, MessageStatus
 from app.integrations.gupshup_direct import gupshup_direct
+from app.integrations.email_provider import get_email_provider
 from app.services.template_variables import resolve_variables
 
 logger = get_logger("services.campaign_executor")
@@ -174,10 +175,23 @@ async def execute_campaign(
                     skipped += 1
                     continue
             else:
-                # Email sending — use Gmail or SendGrid
-                # For now, skip email (needs connected account)
-                skipped += 1
-                continue
+                # Email sending via pluggable provider
+                email_provider = get_email_provider()
+                subject = personalize_message(
+                    first_step.subject_template or f"Message from {tenant.company_name}",
+                    contact,
+                    tenant.company_name,
+                )
+                from_email = getattr(tenant, "default_from_email", None) or "noreply@tradecrm.io"
+                from_name = tenant.company_name or "TradeCRM"
+                result = await email_provider.send(
+                    to_email=contact.email,
+                    from_email=from_email,
+                    from_name=from_name,
+                    subject=subject,
+                    html_body=f"<div>{body}</div>",
+                    tracking_id=str(campaign_id),
+                )
 
             # Create message record
             message = Message(

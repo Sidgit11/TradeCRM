@@ -37,8 +37,20 @@ class Settings(BaseSettings):
     GUPSHUP_WEBHOOK_SECRET: str = ""
     GUPSHUP_WEBHOOK_URL: str = ""
 
-    # Email (SendGrid)
+    # Email Provider — set EMAIL_PROVIDER to: sendgrid, resend, ses, smtp, or log
+    EMAIL_PROVIDER: str = "log"
     SENDGRID_API_KEY: str = ""
+    RESEND_API_KEY: str = ""
+    # AWS SES (if using ses provider)
+    AWS_ACCESS_KEY_ID: str = ""
+    AWS_SECRET_ACCESS_KEY: str = ""
+    AWS_SES_REGION: str = "us-east-1"
+    # Generic SMTP (if using smtp provider)
+    SMTP_HOST: str = ""
+    SMTP_PORT: str = "587"
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_USE_TLS: str = "true"
 
     # Gmail OAuth
     GOOGLE_CLIENT_ID: str = ""
